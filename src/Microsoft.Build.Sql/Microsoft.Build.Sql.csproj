@@ -24,16 +24,28 @@
   <Target Name="CopyBuildBinaries" BeforeTargets="Build">
     <Message Text="Using DacFx version '$(DacFxPackageVersion)'" Importance="high" />
     <ItemGroup>
-      <PackageFiles Include="$(PkgMicrosoft_SqlServer_DacFx)\lib\netstandard2.1\*.dll" />
-      <PackageFiles Include="$(PkgMicrosoft_SqlServer_DacFx)\lib\netstandard2.1\*.targets" />
-      <PackageFiles Include="$(PkgMicrosoft_Data_SqlClient)\lib\netstandard2.1\Microsoft.Data.SqlClient.dll" />
-      <PackageFiles Include="$(PkgMicrosoft_SqlServer_Server)\lib\netstandard2.0\Microsoft.SqlServer.Server.dll" />
-      <PackageFiles Include="$(PkgMicrosoft_SqlServer_TransactSql_ScriptDom)\lib\netstandard2.1\Microsoft.SqlServer.TransactSql.ScriptDom.dll" />
-      <PackageFiles Include="$(PkgMicrosoft_SqlServer_Types)\lib\netstandard2.1\Microsoft.SqlServer.Types.dll" />
-      <PackageFiles Include="$(PkgSystem_ComponentModel_Composition)\lib\netcoreapp3.1\System.ComponentModel.Composition.dll" />
-      <PackageFiles Include="$(PkgSystem_IO_Packaging)\lib\netstandard2.0\System.IO.Packaging.dll" />
+      <NetStandardFiles Include="$(PkgMicrosoft_SqlServer_DacFx)\lib\netstandard2.1\*.dll" />
+      <NetStandardFiles Include="$(PkgMicrosoft_SqlServer_DacFx)\lib\netstandard2.1\*.targets" />
+      <NetStandardFiles Include="$(PkgMicrosoft_Data_SqlClient)\lib\netstandard2.1\Microsoft.Data.SqlClient.dll" />
+      <NetStandardFiles Include="$(PkgMicrosoft_SqlServer_Server)\lib\netstandard2.0\Microsoft.SqlServer.Server.dll" />
+      <NetStandardFiles Include="$(PkgMicrosoft_SqlServer_TransactSql_ScriptDom)\lib\netstandard2.1\Microsoft.SqlServer.TransactSql.ScriptDom.dll" />
+      <NetStandardFiles Include="$(PkgMicrosoft_SqlServer_Types)\lib\netstandard2.1\Microsoft.SqlServer.Types.dll" />
+      <NetStandardFiles Include="$(PkgSystem_ComponentModel_Composition)\lib\netcoreapp3.1\System.ComponentModel.Composition.dll" />
+      <NetStandardFiles Include="$(PkgSystem_IO_Packaging)\lib\netstandard2.0\System.IO.Packaging.dll" />
     </ItemGroup>
-    <Copy SourceFiles="@(PackageFiles)" DestinationFolder="$(BuildBinariesPath)" />
+    <Copy SourceFiles="@(NetStandardFiles)" DestinationFolder="$(MSBuildThisFileDirectory)\tools\netstandard2.1\" />
+    <ItemGroup>
+      <NetFrameworkFiles Include="$(PkgMicrosoft_SqlServer_DacFx)\lib\net462\*.dll" />
+      <NetFrameworkFiles Include="$(PkgMicrosoft_SqlServer_DacFx)\lib\net462\*.targets" />  <!-- Do we need this? -->
+      <NetFrameworkFiles Include="$(PkgMicrosoft_Data_SqlClient)\lib\net462\Microsoft.Data.SqlClient.dll" />
+      <NetFrameworkFiles Include="$(PkgMicrosoft_SqlServer_Server)\lib\net46\Microsoft.SqlServer.Server.dll" />
+      <NetFrameworkFiles Include="$(PkgMicrosoft_SqlServer_TransactSql_ScriptDom)\lib\net462\Microsoft.SqlServer.TransactSql.ScriptDom.dll" />
+      <NetFrameworkFiles Include="$(PkgMicrosoft_SqlServer_Types)\lib\net462\Microsoft.SqlServer.Types.dll" />
+      <!-- This one's missing -->
+      <!-- <NetFrameworkFiles Include="$(PkgSystem_ComponentModel_Composition)\lib\net461\System.ComponentModel.Composition.dll" /> -->
+      <NetFrameworkFiles Include="$(PkgSystem_IO_Packaging)\lib\net461\System.IO.Packaging.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(NetFrameworkFiles)" DestinationFolder="$(MSBuildThisFileDirectory)\tools\net462\" />
   </Target>
 
   <Target Name="DeleteToolsFolder" AfterTargets="Clean">

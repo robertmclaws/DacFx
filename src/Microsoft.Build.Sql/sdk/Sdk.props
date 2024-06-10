@@ -18,6 +18,7 @@
   <PropertyGroup Condition="'$(NetCoreBuild)'=='false'">
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkMoniker>.NETFramework,Version=$(TargetFrameworkVersion)</TargetFrameworkMoniker>
+    <SSDTPath>$(MSBuildThisFileDirectory)../tools/net462</SSDTPath>
   </PropertyGroup>
   
   <!-- Defaults from SSDT -->

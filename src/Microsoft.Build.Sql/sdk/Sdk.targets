@@ -46,8 +46,9 @@
   <Target Name="CoreCompile" />
 
   <Import Condition="'$(NetCoreBuild)' == 'true'" Project="$(MSBuildThisFileDirectory)../tools/netstandard2.1/Microsoft.Data.Tools.Schema.SqlTasks.targets"/>
-  <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
-  <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(NetCoreBuild)' != 'true'" Project="$(MSBuildThisFileDirectory)../tools/net462/Microsoft.Data.Tools.Schema.SqlTasks.targets"/>
+  <!-- <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" /> -->
+  <!-- <Import Condition="'$(NetCoreBuild)' != 'true' AND '$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" /> -->
   
   <Import Condition="'$(NetCoreBuild)' == 'true'" Project="$(MSBuildSdksPath)/Microsoft.NET.Sdk/targets/Microsoft.NET.DefaultAssemblyInfo.targets" />
   <Import Condition="'$(NetCoreBuild)' == 'true'" Project="$(MSBuildSdksPath)/Microsoft.NET.Sdk/targets/Microsoft.NET.Sdk.targets" />
